@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit",
-    "clean": "rimraf .next node_modules"
+    "clean": "rimraf .next node_modules",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -32,20 +35,25 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@next/eslint-plugin-next": "^15.5.20",
+    "@playwright/test": "^1.61.1",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@typescript-eslint/eslint-plugin": "^8.63.0",
+    "@typescript-eslint/parser": "^8.63.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.25.1",
     "eslint-config-next": "^15.3.1",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^14.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
     "postcss": "^8.5.3",
     "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.10"
   }
 }

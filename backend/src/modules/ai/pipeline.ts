@@ -31,8 +31,7 @@ export type PipelineEvent =
   | { type: 'mcp_status'; enabled: boolean; servers: string; tools: string[] };
 
 interface PhaseConfig {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Agent is generic by SDK design
-  agent: Agent<any, any>;
+  agent: Agent;
   name: string;
   label: string;
 }

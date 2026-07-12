@@ -12,7 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { authApi } from '@/lib/auth';
 
 export default function SettingsPage() {
-  const { user, profile, isLoading, refreshProfile } = useAuth();
+  const { user, isLoading, refreshProfile } = useAuth();
   const [name, setName] = useState(user?.name ?? '');
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);

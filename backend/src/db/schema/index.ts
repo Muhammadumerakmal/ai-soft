@@ -9,3 +9,5 @@ export type { OrganizationMember, NewOrganizationMember } from './organization-m
 
 export { projects } from './projects.js';
 export type { Project, NewProject } from './projects.js';
+
+export { auditLogs } from './audit-logs.js';

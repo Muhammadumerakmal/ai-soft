@@ -254,12 +254,7 @@ export const allAgents: Agent[] = [
 
 export const pipelineStartAgent = ceo;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Tool union type includes FunctionTool generic types
-export function applyMcpToAgent(
-  base: Agent<any, any>,
-  servers: MCPServer[],
-  tools: Tool<any>[],
-): Agent<any, any> {
+export function applyMcpToAgent(base: Agent, servers: MCPServer[], tools: Tool[]): Agent {
   if (servers.length === 0 && tools.length === 0) return base;
   return base.clone({
     mcpServers: servers,

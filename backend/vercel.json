@@ -1,0 +1,13 @@
+{
+  "name": "ai-soft-comp-api",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "type": "npm",
+  "functions": {
+    "api/index.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    }
+  }
+}

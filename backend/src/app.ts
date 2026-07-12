@@ -10,6 +10,7 @@ import { usersRoutes } from './modules/users/users.routes.js';
 import { organizationsRoutes } from './modules/organizations/organizations.routes.js';
 import { projectsRoutes } from './modules/projects/projects.routes.js';
 import authPlugin from './modules/auth/auth.plugin.js';
+import { securityPlugin } from './modules/security/index.js';
 import { errorHandler, notFoundHandler, createLoggerConfig } from './shared/index.js';
 
 export async function buildApp() {
@@ -25,6 +26,7 @@ export async function buildApp() {
     cookie: { cookieName: 'token', signed: false },
   });
   await app.register(authPlugin);
+  await app.register(securityPlugin);
 
   app.setErrorHandler(errorHandler);
   app.setNotFoundHandler(notFoundHandler);

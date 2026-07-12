@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useAuth } from '@/features/auth/auth-context';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -8,7 +7,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Plus, FolderKanban } from 'lucide-react';
 
 export default function ProjectsPage() {
-  const { profile, isLoading } = useAuth();
+  const { isLoading } = useAuth();
 
   if (isLoading) {
     return (

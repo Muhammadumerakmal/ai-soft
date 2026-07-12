@@ -7,15 +7,7 @@ import { useAuth } from '@/features/auth/auth-context';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import {
-  LayoutDashboard,
-  FolderKanban,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-  ChevronDown,
-} from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Settings, LogOut, Menu, X } from 'lucide-react';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -25,7 +17,7 @@ const navItems = [
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { user, profile, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const initials =
@@ -42,10 +34,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         className={`fixed inset-y-0 left-0 z-50 w-64 border-r bg-background transition-transform lg:static lg:translate-x-0 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
+        aria-label="Main navigation"
       >
         <div className="flex h-full flex-col">
           <div className="flex h-14 items-center justify-between border-b px-4">
-            <Link href="/dashboard" className="font-semibold">
+            <Link href="/dashboard" className="font-semibold" aria-label="Dashboard home">
               AI Software Co
             </Link>
             <Button
@@ -53,12 +46,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               size="icon"
               className="lg:hidden"
               onClick={() => setSidebarOpen(false)}
+              aria-label="Close sidebar"
             >
               <X className="h-5 w-5" />
             </Button>
           </div>
 
-          <nav className="flex-1 space-y-1 p-4">
+          <nav className="flex-1 space-y-1 p-4" aria-label="Sidebar navigation">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
@@ -72,8 +66,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                   }`}
                   onClick={() => setSidebarOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4 w-4" aria-hidden="true" />
                   {item.label}
                 </Link>
               );
@@ -103,16 +98,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div
           className="fixed inset-0 z-40 bg-black/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
         />
       )}
 
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="flex h-14 items-center gap-4 border-b px-4 lg:px-6">
+        <header className="flex h-14 items-center gap-4 border-b px-4 lg:px-6" role="banner">
           <Button
             variant="ghost"
             size="icon"
             className="lg:hidden"
             onClick={() => setSidebarOpen(true)}
+            aria-label="Open sidebar"
           >
             <Menu className="h-5 w-5" />
           </Button>
