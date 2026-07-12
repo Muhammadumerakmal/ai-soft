@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/schema.json",
+  "instructions": [
+    {
+      "type": "file",
+      "path": "AGENTS.md"
+    }
+  ],
+  "tools": {
+    "enabled": ["bash", "edit", "glob", "grep", "read", "write", "webfetch", "websearch"],
+    "disabled": []
+  },
+  "danger": {
+    "allow": ["bash"]
+  }
+}
