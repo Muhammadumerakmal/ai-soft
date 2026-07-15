@@ -1,4 +1,5 @@
 import { ceoOutputSchema } from '@aisoftco/shared';
+
 import { CEO_SYSTEM_PROMPT } from './prompts/ceo.prompt';
 import { formatFeedback, type AgentDefinition } from './types';
 

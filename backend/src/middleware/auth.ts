@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+
 import { verifyAccessToken } from '../config/jwt';
 import { AuthenticationError } from '../utils/errors';
 

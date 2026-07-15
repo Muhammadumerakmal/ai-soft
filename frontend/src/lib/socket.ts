@@ -1,4 +1,5 @@
 import { io, type Socket } from 'socket.io-client';
+
 import { getAccessToken } from './api-client';
 
 const SOCKET_URL = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api/v1').replace(/\/api\/v1$/, '');

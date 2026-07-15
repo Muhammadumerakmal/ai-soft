@@ -1,4 +1,5 @@
 import { pgTable, uuid, varchar, text, boolean, doublePrecision, integer, timestamp } from 'drizzle-orm/pg-core';
+
 import { agentType } from '../enums';
 
 export const aiAgents = pgTable('ai_agents', {

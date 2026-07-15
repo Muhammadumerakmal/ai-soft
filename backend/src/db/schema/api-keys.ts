@@ -1,4 +1,5 @@
 import { pgTable, uuid, varchar, timestamp, boolean } from 'drizzle-orm/pg-core';
+
 import { users } from './users';
 
 export const apiKeys = pgTable('api_keys', {

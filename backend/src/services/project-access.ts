@@ -1,7 +1,9 @@
 import type { TeamRole } from '@aisoftco/shared';
+
 import type { projects } from '../db/schema';
-import { TeamService } from './team.service';
 import { NotFoundError } from '../utils/errors';
+
+import { TeamService } from './team.service';
 
 const teamService = new TeamService();
 

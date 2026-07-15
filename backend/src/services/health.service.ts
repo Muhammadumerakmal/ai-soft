@@ -1,7 +1,8 @@
 import { sql } from 'drizzle-orm';
+
+import { env } from '../config';
 import { db } from '../config/database';
 import { redis } from '../config/redis';
-import { env } from '../config';
 import { logger } from '../utils/logger';
 
 const CHECK_NAMES = ['database', 'openai', 'redis'] as const;

@@ -1,8 +1,9 @@
-import { and, asc, desc, eq, lt } from 'drizzle-orm';
 import type { AgentType } from '@aisoftco/shared';
+import { and, asc, desc, eq, lt } from 'drizzle-orm';
+
+import type { PipelineContext } from '../agents/types';
 import { db } from '../config/database';
 import { workflowSteps, agentOutputs, projects } from '../db/schema';
-import type { PipelineContext } from '../agents/types';
 
 export async function buildContext(
   workflowId: string,

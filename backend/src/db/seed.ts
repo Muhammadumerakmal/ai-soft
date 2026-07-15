@@ -1,7 +1,9 @@
 import { eq } from 'drizzle-orm';
+
 import { db } from '../config/database';
-import { aiAgents } from './schema';
 import { logger } from '../utils/logger';
+
+import { aiAgents } from './schema';
 
 const AGENT_DEFAULTS = [
   {
@@ -24,6 +26,55 @@ const AGENT_DEFAULTS = [
     model: 'poolside/laguna-m.1:free',
     temperature: 0.2,
     maxTokens: 4096,
+  },
+  {
+    name: 'UI Designer Agent',
+    agentType: 'ui_designer' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.4,
+    maxTokens: 6000,
+  },
+  {
+    name: 'DB Engineer Agent',
+    agentType: 'db_engineer' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.2,
+    maxTokens: 8000,
+  },
+  {
+    name: 'Backend Engineer Agent',
+    agentType: 'backend_engineer' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.2,
+    maxTokens: 8000,
+  },
+  {
+    name: 'Frontend Engineer Agent',
+    agentType: 'frontend_engineer' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.2,
+    maxTokens: 8000,
+  },
+  {
+    name: 'QA Agent',
+    agentType: 'qa' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.3,
+    maxTokens: 8000,
+  },
+  {
+    name: 'DevOps Agent',
+    agentType: 'devops' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.2,
+    maxTokens: 6000,
+  },
+  {
+    name: 'Documentation Agent',
+    agentType: 'documentation' as const,
+    model: 'poolside/laguna-m.1:free',
+    temperature: 0.3,
+    maxTokens: 8000,
   },
 ];
 

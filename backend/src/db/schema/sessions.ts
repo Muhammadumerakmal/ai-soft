@@ -1,4 +1,5 @@
 import { pgTable, uuid, varchar, timestamp } from 'drizzle-orm/pg-core';
+
 import { users } from './users';
 
 export const sessions = pgTable('sessions', {

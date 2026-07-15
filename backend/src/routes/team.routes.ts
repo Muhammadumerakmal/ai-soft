@@ -1,5 +1,3 @@
-import { Router } from 'express';
-import { z } from 'zod';
 import {
   createTeamSchema,
   updateTeamSchema,
@@ -7,9 +5,12 @@ import {
   updateMemberRoleSchema,
   uuidSchema,
 } from '@aisoftco/shared';
+import { Router } from 'express';
+import { z } from 'zod';
+
 import { TeamController } from '../controllers/team.controller';
-import { validate } from '../middleware/validate';
 import { authenticate } from '../middleware/auth';
+import { validate } from '../middleware/validate';
 
 const idParamsSchema = z.object({ id: uuidSchema });
 const memberParamsSchema = z.object({ id: uuidSchema, memberId: uuidSchema });

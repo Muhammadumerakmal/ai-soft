@@ -1,5 +1,7 @@
 import { pgTable, uuid, varchar, text, boolean, jsonb, timestamp } from 'drizzle-orm/pg-core';
+
 import { notificationType } from '../enums';
+
 import { users } from './users';
 
 export const notifications = pgTable('notifications', {

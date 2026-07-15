@@ -1,4 +1,5 @@
 import { pgTable, uuid, varchar, text, integer, timestamp } from 'drizzle-orm/pg-core';
+
 import { aiConversations } from './ai-conversations';
 
 export const aiMessages = pgTable('ai_messages', {

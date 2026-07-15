@@ -1,4 +1,5 @@
 import jwt, { type SignOptions } from 'jsonwebtoken';
+
 import { env } from './index';
 
 export interface AccessTokenPayload {

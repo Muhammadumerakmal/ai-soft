@@ -1,6 +1,7 @@
 import { pgTable, uuid, varchar, jsonb, timestamp } from 'drizzle-orm/pg-core';
-import { users } from './users';
+
 import { projects } from './projects';
+import { users } from './users';
 
 export const activityLogs = pgTable('activity_logs', {
   id: uuid('id').primaryKey().defaultRandom(),

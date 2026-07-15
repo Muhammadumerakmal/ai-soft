@@ -1,5 +1,6 @@
-import { and, eq, isNull } from 'drizzle-orm';
 import type { CreateTeamInput, UpdateTeamInput, InviteMemberInput, TeamRole } from '@aisoftco/shared';
+import { and, eq, isNull } from 'drizzle-orm';
+
 import { db } from '../config/database';
 import { organizations, teams, memberships, users } from '../db/schema';
 import { AuthorizationError, ConflictError, NotFoundError, ValidationError } from '../utils/errors';

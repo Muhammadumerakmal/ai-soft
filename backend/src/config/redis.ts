@@ -1,6 +1,8 @@
 import Redis from 'ioredis';
-import { env } from './index';
+
 import { logger } from '../utils/logger';
+
+import { env } from './index';
 
 export const redis = env.REDIS_URL
   ? new Redis(env.REDIS_URL, { maxRetriesPerRequest: null })

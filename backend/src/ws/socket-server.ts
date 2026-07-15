@@ -1,7 +1,9 @@
 import type { Server as HttpServer } from 'http';
+
 import { Server } from 'socket.io';
-import { verifyAccessToken } from '../config/jwt';
+
 import { env } from '../config';
+import { verifyAccessToken } from '../config/jwt';
 import { logger } from '../utils/logger';
 
 let io: Server | null = null;

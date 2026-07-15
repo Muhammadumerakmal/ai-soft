@@ -1,5 +1,3 @@
-import { Router } from 'express';
-import { z } from 'zod';
 import {
   createProjectSchema,
   updateProjectSchema,
@@ -8,10 +6,13 @@ import {
   approveStepSchema,
   rejectStepSchema,
 } from '@aisoftco/shared';
+import { Router } from 'express';
+import { z } from 'zod';
+
 import { ProjectController } from '../controllers/project.controller';
 import { WorkflowController } from '../controllers/workflow.controller';
-import { validate } from '../middleware/validate';
 import { authenticate } from '../middleware/auth';
+import { validate } from '../middleware/validate';
 
 const idParamsSchema = z.object({ id: uuidSchema });
 

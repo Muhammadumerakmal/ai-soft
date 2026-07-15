@@ -101,6 +101,19 @@ export const architectOutputSchema = z.object({
 
 export type ArchitectOutput = z.infer<typeof architectOutputSchema>;
 
+export const generatedFilesOutputSchema = z.object({
+  summary: z.string(),
+  files: z.array(
+    z.object({
+      path: z.string(),
+      content: z.string(),
+      description: z.string().optional(),
+    })
+  ),
+});
+
+export type GeneratedFilesOutput = z.infer<typeof generatedFilesOutputSchema>;
+
 export const approveStepSchema = z.object({
   comment: z.string().max(2000).optional(),
 });

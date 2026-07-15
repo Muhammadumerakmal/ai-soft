@@ -1,7 +1,9 @@
 import { pgTable, uuid, integer, text, timestamp } from 'drizzle-orm/pg-core';
+
 import { agentStatus } from '../enums';
-import { workflowSteps } from './workflow-steps';
+
 import { aiAgents } from './ai-agents';
+import { workflowSteps } from './workflow-steps';
 
 export const agentExecutions = pgTable('agent_executions', {
   id: uuid('id').primaryKey().defaultRandom(),

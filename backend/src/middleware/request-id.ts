@@ -1,7 +1,9 @@
-import type { Request, Response, NextFunction } from 'express';
 import crypto from 'node:crypto';
 
+import type { Request, Response, NextFunction } from 'express';
+
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       id: string;

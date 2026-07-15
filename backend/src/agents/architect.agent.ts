@@ -1,4 +1,5 @@
 import { architectOutputSchema } from '@aisoftco/shared';
+
 import { ARCHITECT_SYSTEM_PROMPT } from './prompts/architect.prompt';
 import { formatFeedback, formatPriorOutputs, type AgentDefinition } from './types';
 

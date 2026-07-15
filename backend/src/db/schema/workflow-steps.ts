@@ -1,5 +1,7 @@
 import { pgTable, uuid, integer, jsonb, text, timestamp } from 'drizzle-orm/pg-core';
+
 import { agentType, workflowStatus } from '../enums';
+
 import { workflows } from './workflows';
 
 export const workflowSteps = pgTable('workflow_steps', {

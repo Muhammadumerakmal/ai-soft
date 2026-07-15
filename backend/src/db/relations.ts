@@ -1,25 +1,27 @@
 import { relations } from 'drizzle-orm';
-import { users } from './schema/users';
-import { sessions } from './schema/sessions';
-import { apiKeys } from './schema/api-keys';
-import { organizations } from './schema/organizations';
-import { teams } from './schema/teams';
-import { memberships } from './schema/memberships';
-import { projects } from './schema/projects';
-import { projectRequirements } from './schema/project-requirements';
-import { projectFiles } from './schema/project-files';
-import { workflows } from './schema/workflows';
-import { workflowSteps } from './schema/workflow-steps';
-import { aiAgents } from './schema/ai-agents';
+
+import { activityLogs } from './schema/activity-logs';
 import { agentExecutions } from './schema/agent-executions';
 import { agentOutputs } from './schema/agent-outputs';
+import { aiAgents } from './schema/ai-agents';
 import { aiConversations } from './schema/ai-conversations';
 import { aiMessages } from './schema/ai-messages';
-import { tasks } from './schema/tasks';
-import { notifications } from './schema/notifications';
-import { activityLogs } from './schema/activity-logs';
+import { apiKeys } from './schema/api-keys';
 import { auditLogs } from './schema/audit-logs';
+import { memberships } from './schema/memberships';
+import { notifications } from './schema/notifications';
+import { organizations } from './schema/organizations';
+import { projectFiles } from './schema/project-files';
+import { projectRequirements } from './schema/project-requirements';
+import { projects } from './schema/projects';
+import { sessions } from './schema/sessions';
 import { settings } from './schema/settings';
+import { subscriptions } from './schema/subscriptions';
+import { tasks } from './schema/tasks';
+import { teams } from './schema/teams';
+import { users } from './schema/users';
+import { workflowSteps } from './schema/workflow-steps';
+import { workflows } from './schema/workflows';
 
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
@@ -128,4 +130,9 @@ export const auditLogsRelations = relations(auditLogs, ({ one }) => ({
 
 export const settingsRelations = relations(settings, ({ one }) => ({
   user: one(users, { fields: [settings.userId], references: [users.id] }),
+}));
+
+export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
+  user: one(users, { fields: [subscriptions.userId], references: [users.id] }),
+  team: one(teams, { fields: [subscriptions.teamId], references: [teams.id] }),
 }));

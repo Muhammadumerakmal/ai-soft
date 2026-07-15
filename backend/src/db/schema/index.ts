@@ -19,3 +19,4 @@ export { notifications } from './notifications';
 export { activityLogs } from './activity-logs';
 export { auditLogs } from './audit-logs';
 export { settings } from './settings';
+export { subscriptions } from './subscriptions';

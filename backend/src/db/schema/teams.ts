@@ -1,4 +1,5 @@
 import { pgTable, uuid, varchar, text, timestamp } from 'drizzle-orm/pg-core';
+
 import { organizations } from './organizations';
 
 export const teams = pgTable('teams', {

@@ -1,8 +1,9 @@
-import jwt from 'jsonwebtoken';
 import { eq } from 'drizzle-orm';
+import jwt from 'jsonwebtoken';
+
 import { db } from '../config/database';
-import { sessions } from '../db/schema';
 import { signAccessToken, signRefreshToken } from '../config/jwt';
+import { sessions } from '../db/schema';
 
 interface TokenUser {
   id: string;

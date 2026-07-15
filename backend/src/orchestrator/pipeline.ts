@@ -1,7 +1,9 @@
 import { Queue, Worker, type Job } from 'bullmq';
+
 import { env } from '../config';
-import { executeStep } from './agent-executor';
 import { logger } from '../utils/logger';
+
+import { executeStep } from './agent-executor';
 
 export const QUEUE_NAME = 'agent-pipeline';
 

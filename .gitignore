@@ -10,3 +10,11 @@ dist/
 *.tsbuildinfo
 coverage/
 .turbo/
+
+# Claude Code local tooling state (agent worktrees, session data) — never committed
+.claude/
+
+# AI-pipeline runtime output — generated at request time, not source
+/generated/
+docs/*/
+

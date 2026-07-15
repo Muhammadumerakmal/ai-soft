@@ -1,4 +1,5 @@
 import { migrate } from 'drizzle-orm/neon-http/migrator';
+
 import { db } from '../config/database';
 import { logger } from '../utils/logger';
 

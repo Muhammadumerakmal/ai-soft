@@ -1,8 +1,9 @@
-import { Router } from 'express';
 import { registerSchema, loginSchema, refreshTokenSchema } from '@aisoftco/shared';
+import { Router } from 'express';
+
 import { AuthController } from '../controllers/auth.controller';
-import { validate } from '../middleware/validate';
 import { authRateLimiter } from '../middleware/rate-limit';
+import { validate } from '../middleware/validate';
 
 const router = Router();
 const authController = new AuthController();

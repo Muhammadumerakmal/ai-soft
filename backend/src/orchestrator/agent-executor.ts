@@ -1,12 +1,14 @@
 import { eq } from 'drizzle-orm';
 import zodToJsonSchema from 'zod-to-json-schema';
-import { openai } from '../config/openai';
-import { db } from '../config/database';
-import { workflowSteps, workflows, aiAgents, agentExecutions, agentOutputs, projects } from '../db/schema';
+
 import { getAgentDefinition } from '../agents';
-import { buildContext } from './context-builder';
-import { broadcastWorkflowState } from './broadcast';
+import { db } from '../config/database';
+import { openai } from '../config/openai';
+import { workflowSteps, workflows, aiAgents, agentExecutions, agentOutputs, projects } from '../db/schema';
 import { logger } from '../utils/logger';
+
+import { broadcastWorkflowState } from './broadcast';
+import { buildContext } from './context-builder';
 
 function stripNulls<T>(value: T): T {
   if (Array.isArray(value)) {

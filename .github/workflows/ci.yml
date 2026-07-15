@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared package
+        run: npm run build --workspace=shared
+
+      - name: Typecheck backend
+        run: npm run typecheck --workspace=backend
+
+      - name: Typecheck frontend
+        run: npm run typecheck --workspace=frontend
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build frontend
+        run: npm run build --workspace=frontend
+
+  # Deploy is intentionally omitted: this environment has no real Vercel /
+  # hosting credentials configured. Add a deploy job here (e.g. Vercel CLI or
+  # the official amondnet/vercel-action) once VERCEL_TOKEN, VERCEL_ORG_ID and
+  # VERCEL_PROJECT_ID secrets are available, gated on
+  # `if: github.ref == 'refs/heads/main' && github.event_name == 'push'`.

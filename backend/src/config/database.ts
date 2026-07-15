@@ -1,7 +1,9 @@
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
-import * as tables from '../db/schema';
+
 import * as relations from '../db/relations';
+import * as tables from '../db/schema';
+
 import { env } from './index';
 
 const schema = { ...tables, ...relations };

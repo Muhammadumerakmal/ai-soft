@@ -1,5 +1,7 @@
 import { pgTable, uuid, varchar, text, timestamp } from 'drizzle-orm/pg-core';
+
 import { taskStatus } from '../enums';
+
 import { projects } from './projects';
 import { users } from './users';
 

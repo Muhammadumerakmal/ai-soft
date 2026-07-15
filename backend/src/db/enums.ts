@@ -52,3 +52,15 @@ export const notificationType = pgEnum('notification_type', [
 ]);
 
 export const taskStatus = pgEnum('task_status', ['pending', 'in_progress', 'completed', 'failed']);
+
+export const billingPlan = pgEnum('billing_plan', ['free', 'pro', 'enterprise']);
+
+export const subscriptionStatus = pgEnum('subscription_status', [
+  'active',
+  'trialing',
+  'past_due',
+  'canceled',
+  'incomplete',
+  'incomplete_expired',
+  'unpaid',
+]);

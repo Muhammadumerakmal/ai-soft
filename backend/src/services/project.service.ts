@@ -1,12 +1,15 @@
-import { and, desc, eq, inArray, isNull, or } from 'drizzle-orm';
 import type { CreateProjectInput, UpdateProjectInput, PaginationInput } from '@aisoftco/shared';
+import { and, desc, eq, inArray, isNull, or } from 'drizzle-orm';
+
 import { db } from '../config/database';
 import { projects } from '../db/schema';
-import { NotFoundError } from '../utils/errors';
 import { OrchestratorService } from '../orchestrator';
-import { TeamService } from './team.service';
-import { assertProjectAccess, getAccessibleTeamIds } from './project-access';
+import { NotFoundError } from '../utils/errors';
 import { logger } from '../utils/logger';
+
+import { assertProjectAccess, getAccessibleTeamIds } from './project-access';
+import { TeamService } from './team.service';
+
 
 const orchestratorService = new OrchestratorService();
 const teamService = new TeamService();

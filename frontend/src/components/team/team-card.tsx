@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import type { TeamResponse } from '@aisoftco/shared';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
+
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export function TeamCard({ team }: { team: TeamResponse }) {
   return (

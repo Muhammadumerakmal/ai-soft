@@ -1,5 +1,7 @@
 import { pgTable, uuid, timestamp } from 'drizzle-orm/pg-core';
+
 import { teamRole } from '../enums';
+
 import { teams } from './teams';
 import { users } from './users';
 

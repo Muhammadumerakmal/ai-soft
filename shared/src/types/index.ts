@@ -26,6 +26,7 @@ export type {
   UserStory,
   PMOutput,
   ArchitectOutput,
+  GeneratedFilesOutput,
   AgentOutput,
   ApproveStepInput,
   RejectStepInput,

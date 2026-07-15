@@ -1,16 +1,12 @@
 'use client';
 
+import { inviteMemberSchema, type InviteMemberInput } from '@aisoftco/shared';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { inviteMemberSchema, type InviteMemberInput } from '@aisoftco/shared';
-import { useInviteMember } from '@/hooks/use-teams';
-import { ApiError } from '@/lib/api-client';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -20,6 +16,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useInviteMember } from '@/hooks/use-teams';
+import { ApiError } from '@/lib/api-client';
 
 export function InviteMemberDialog({ teamId }: { teamId: string }) {
   const [open, setOpen] = useState(false);

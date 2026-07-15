@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+
 import { TeamService } from '../services/team.service';
 
 const teamService = new TeamService();

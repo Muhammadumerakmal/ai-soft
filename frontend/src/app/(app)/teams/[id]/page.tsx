@@ -1,12 +1,13 @@
 'use client';
 
 import { use } from 'react';
-import { useTeam } from '@/hooks/use-teams';
+
 import { InviteMemberDialog } from '@/components/team/invite-member-dialog';
 import { MemberList } from '@/components/team/member-list';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useTeam } from '@/hooks/use-teams';
 
 export default function TeamDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);

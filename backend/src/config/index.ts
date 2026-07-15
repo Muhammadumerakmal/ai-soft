@@ -1,5 +1,5 @@
-import { z } from 'zod';
 import dotenv from 'dotenv';
+import { z } from 'zod';
 
 dotenv.config();
 
@@ -18,6 +18,14 @@ const envSchema = z.object({
   REDIS_URL: z.string().optional(),
   RATE_LIMIT_WINDOW_MS: z.coerce.number().default(15 * 60 * 1000),
   RATE_LIMIT_MAX: z.coerce.number().default(100),
+  STRIPE_SECRET_KEY: z.string().optional(),
+  STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  STRIPE_PRICE_PRO: z.string().optional(),
+  STRIPE_PRICE_ENTERPRISE: z.string().optional(),
+  MCP_PORT: z.coerce.number().default(3002),
+  MCP_API_KEY: z.string().optional(),
+  CONTEXT7_API_KEY: z.string().optional(),
+  CONTEXT7_BASE_URL: z.string().url().optional(),
 });
 
 const parsed = envSchema.safeParse(process.env);

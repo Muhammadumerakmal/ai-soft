@@ -1,16 +1,12 @@
 'use client';
 
+import { createTeamSchema, type CreateTeamInput } from '@aisoftco/shared';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { createTeamSchema, type CreateTeamInput } from '@aisoftco/shared';
-import { useCreateTeam } from '@/hooks/use-teams';
-import { ApiError } from '@/lib/api-client';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -20,6 +16,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { useCreateTeam } from '@/hooks/use-teams';
+import { ApiError } from '@/lib/api-client';
 
 export function CreateTeamDialog() {
   const [open, setOpen] = useState(false);

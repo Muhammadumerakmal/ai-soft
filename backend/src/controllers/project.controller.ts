@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
+
 import { ProjectService } from '../services/project.service';
 
 const projectService = new ProjectService();

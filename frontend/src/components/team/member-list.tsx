@@ -1,10 +1,11 @@
 'use client';
 
 import type { MemberResponse, TeamRole } from '@aisoftco/shared';
-import { useRemoveMember, useUpdateMemberRole } from '@/hooks/use-teams';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useRemoveMember, useUpdateMemberRole } from '@/hooks/use-teams';
 
 const ASSIGNABLE_ROLES: Exclude<TeamRole, 'owner'>[] = ['viewer', 'editor', 'admin'];
 

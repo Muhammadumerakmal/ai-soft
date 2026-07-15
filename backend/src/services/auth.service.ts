@@ -1,12 +1,14 @@
+import type { RegisterInput, LoginInput } from '@aisoftco/shared';
 import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
-import type { RegisterInput, LoginInput } from '@aisoftco/shared';
+
 import { db } from '../config/database';
-import { users } from '../db/schema';
-import { TokenService } from './token.service';
 import { verifyRefreshToken } from '../config/jwt';
+import { users } from '../db/schema';
 import { AuthenticationError, ConflictError } from '../utils/errors';
 import { toUserResponse } from '../utils/user-mapper';
+
+import { TokenService } from './token.service';
 
 const BCRYPT_ROUNDS = 12;
 

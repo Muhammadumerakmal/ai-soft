@@ -1,10 +1,10 @@
 'use client';
 
-import { useTeams } from '@/hooks/use-teams';
 import { CreateTeamDialog } from '@/components/team/create-team-dialog';
 import { TeamCard } from '@/components/team/team-card';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useTeams } from '@/hooks/use-teams';
 
 export default function TeamsPage() {
   const { data: teams, isLoading, isError } = useTeams();

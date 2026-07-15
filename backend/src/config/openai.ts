@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+
 import { env } from './index';
 
 export const openai = new OpenAI({
