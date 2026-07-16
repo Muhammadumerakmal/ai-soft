@@ -23,6 +23,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { useCreateProject } from '@/hooks/use-projects';
 import { useTeams } from '@/hooks/use-teams';
+import { useToast } from '@/hooks/use-toast';
 import { ApiError } from '@/lib/api-client';
 
 export function CreateProjectDialog() {
@@ -30,6 +31,7 @@ export function CreateProjectDialog() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const createProject = useCreateProject();
+  const { toast } = useToast();
   const { data: teams } = useTeams();
   const eligibleTeams = teams?.filter((team) => team.role !== 'viewer') ?? [];
 
@@ -50,6 +52,7 @@ export function CreateProjectDialog() {
       const project = await createProject.mutateAsync(data);
       reset();
       setOpen(false);
+      toast({ title: 'Project created', description: `"${project.title}" is now running through the agent pipeline.` });
       router.push(`/projects/${project.id}`);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Failed to create project.');

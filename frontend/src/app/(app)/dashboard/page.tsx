@@ -1,5 +1,8 @@
 'use client';
 
+import { FolderKanban } from 'lucide-react';
+
+import { PageHeader } from '@/components/layout/page-header';
 import { CreateProjectDialog } from '@/components/project/create-project-dialog';
 import { ProjectCard } from '@/components/project/project-card';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,13 +14,11 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Projects</h1>
-          <p className="text-sm text-muted-foreground">Describe a project and watch the agent pipeline build it out.</p>
-        </div>
-        <CreateProjectDialog />
-      </div>
+      <PageHeader
+        title="Projects"
+        description="Describe a project and watch the agent pipeline build it out."
+        action={<CreateProjectDialog />}
+      />
 
       {isLoading && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -34,10 +35,16 @@ export default function DashboardPage() {
       )}
 
       {projects && projects.length === 0 && (
-        <Card>
-          <CardContent className="flex flex-col items-center gap-2 p-12 text-center">
-            <p className="font-medium">No projects yet</p>
-            <p className="text-sm text-muted-foreground">Create your first project to kick off the agent pipeline.</p>
+        <Card className="border-dashed">
+          <CardContent className="flex flex-col items-center gap-3 p-12 text-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+              <FolderKanban className="h-6 w-6 text-muted-foreground" />
+            </div>
+            <div>
+              <p className="font-medium">No projects yet</p>
+              <p className="text-sm text-muted-foreground">Create your first project to kick off the agent pipeline.</p>
+            </div>
+            <CreateProjectDialog />
           </CardContent>
         </Card>
       )}

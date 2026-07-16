@@ -1,5 +1,6 @@
 'use client';
 
+import { PageHeader } from '@/components/layout/page-header';
 import { PlanCard } from '@/components/billing/plan-card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -10,18 +11,22 @@ export default function BillingPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Billing</h1>
-        <p className="text-sm text-muted-foreground">Manage your subscription plan.</p>
-      </div>
+      <PageHeader title="Billing" description="Manage your subscription plan." />
 
       {isLoading ? (
-        <Skeleton className="h-48" />
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[...Array(3)].map((_, i) => (
+            <Skeleton key={i} className="h-48" />
+          ))}
+        </div>
       ) : (
         subscription && (
           <>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              Status: <Badge variant={subscription.status === 'active' ? 'success' : 'secondary'}>{subscription.status}</Badge>
+              Status:
+              <Badge variant={subscription.status === 'active' ? 'success' : 'secondary'}>
+                {subscription.status}
+              </Badge>
               {subscription.cancelAtPeriodEnd && <Badge variant="warning">Cancels at period end</Badge>}
             </div>
             <div className="grid gap-4 sm:grid-cols-3">

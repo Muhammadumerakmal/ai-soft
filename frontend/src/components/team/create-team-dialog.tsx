@@ -20,12 +20,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useCreateTeam } from '@/hooks/use-teams';
+import { useToast } from '@/hooks/use-toast';
 import { ApiError } from '@/lib/api-client';
 
 export function CreateTeamDialog() {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const createTeam = useCreateTeam();
+  const { toast } = useToast();
 
   const {
     register,
@@ -37,9 +39,10 @@ export function CreateTeamDialog() {
   const onSubmit = async (data: CreateTeamInput) => {
     setError(null);
     try {
-      await createTeam.mutateAsync(data);
+      const team = await createTeam.mutateAsync(data);
       reset();
       setOpen(false);
+      toast({ title: 'Team created', description: `"${team.name}" is ready — invite teammates from its page.` });
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Failed to create team.');
     }

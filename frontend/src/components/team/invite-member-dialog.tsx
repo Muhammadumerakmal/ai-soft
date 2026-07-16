@@ -20,12 +20,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useInviteMember } from '@/hooks/use-teams';
+import { useToast } from '@/hooks/use-toast';
 import { ApiError } from '@/lib/api-client';
 
 export function InviteMemberDialog({ teamId }: { teamId: string }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const inviteMember = useInviteMember(teamId);
+  const { toast } = useToast();
 
   const {
     register,
@@ -44,6 +46,7 @@ export function InviteMemberDialog({ teamId }: { teamId: string }) {
       await inviteMember.mutateAsync(data);
       reset();
       setOpen(false);
+      toast({ title: 'Invite sent', description: `${data.email} has been added to the team.` });
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Failed to invite member.');
     }

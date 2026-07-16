@@ -1,5 +1,8 @@
 'use client';
 
+import { Users } from 'lucide-react';
+
+import { PageHeader } from '@/components/layout/page-header';
 import { CreateTeamDialog } from '@/components/team/create-team-dialog';
 import { TeamCard } from '@/components/team/team-card';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,13 +14,11 @@ export default function TeamsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Teams</h1>
-          <p className="text-sm text-muted-foreground">Collaborate on projects with role-based access.</p>
-        </div>
-        <CreateTeamDialog />
-      </div>
+      <PageHeader
+        title="Teams"
+        description="Collaborate on projects with role-based access."
+        action={<CreateTeamDialog />}
+      />
 
       {isLoading && (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -34,10 +35,16 @@ export default function TeamsPage() {
       )}
 
       {teams && teams.length === 0 && (
-        <Card>
-          <CardContent className="flex flex-col items-center gap-2 p-12 text-center">
-            <p className="font-medium">No teams yet</p>
-            <p className="text-sm text-muted-foreground">Create a team to start collaborating with others.</p>
+        <Card className="border-dashed">
+          <CardContent className="flex flex-col items-center gap-3 p-12 text-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+              <Users className="h-6 w-6 text-muted-foreground" />
+            </div>
+            <div>
+              <p className="font-medium">No teams yet</p>
+              <p className="text-sm text-muted-foreground">Create a team to start collaborating with others.</p>
+            </div>
+            <CreateTeamDialog />
           </CardContent>
         </Card>
       )}
