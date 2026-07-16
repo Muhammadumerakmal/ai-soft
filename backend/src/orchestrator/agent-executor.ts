@@ -18,6 +18,7 @@ const MAX_MODEL_ATTEMPTS = 3;
 const MAX_TOOL_ITERATIONS = 4;
 const TOOL_PHASE_MAX_TOKENS = 2048;
 const TOOL_RESULT_CHAR_LIMIT = 4000;
+const MAX_TOKENS_CEILING = 16000;
 
 function stripNulls<T>(value: T): T {
   if (Array.isArray(value)) {
@@ -179,12 +180,18 @@ export async function executeStep(workflowStepId: string) {
   let usage: OpenAI.Chat.ChatCompletion['usage'];
   let lastError: unknown;
 
+  // Starts at the agent's configured budget; a JSON parse failure looks like
+  // the model got cut off mid-string by max_tokens, so each such failure grows
+  // the budget for the next attempt (capped) rather than just blindly retrying
+  // with the same limit that just failed.
+  let currentMaxTokens = agentConfig.maxTokens ?? 4096;
+
   for (let attempt = 1; attempt <= MAX_MODEL_ATTEMPTS; attempt++) {
     try {
       const completion = await openai.chat.completions.create({
         model: agentConfig.model,
         temperature: agentConfig.temperature ?? 0.3,
-        max_tokens: agentConfig.maxTokens ?? 4096,
+        max_tokens: currentMaxTokens,
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userMessage },
@@ -198,13 +205,21 @@ export async function executeStep(workflowStepId: string) {
       const raw = completion.choices[0]?.message?.content;
       if (!raw) throw new Error('Empty response from model');
 
-      parsed = definition.schema.parse(stripNulls(JSON.parse(raw))) as Record<string, unknown>;
+      let rawParsed: unknown;
+      try {
+        rawParsed = JSON.parse(raw);
+      } catch (jsonError) {
+        currentMaxTokens = Math.min(Math.round(currentMaxTokens * 1.6), MAX_TOKENS_CEILING);
+        throw jsonError;
+      }
+
+      parsed = definition.schema.parse(stripNulls(rawParsed)) as Record<string, unknown>;
       usage = completion.usage;
       break;
     } catch (error) {
       lastError = error;
       logger.warn(
-        { error, attempt, maxAttempts: MAX_MODEL_ATTEMPTS, agentType: step.agentType },
+        { error, attempt, maxAttempts: MAX_MODEL_ATTEMPTS, nextMaxTokens: currentMaxTokens, agentType: step.agentType },
         'Agent model call failed — retrying if attempts remain'
       );
     }
