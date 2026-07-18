@@ -49,14 +49,23 @@ function getMcpClient(): McpClient | null {
  * rather than failing the step, per the graceful-fallback requirement in
  * .specs/phases/phase-04.md.
  */
-async function runToolPhase(
-  mcpClient: McpClient,
-  allowedToolNames: string[],
-  agentConfig: typeof aiAgents.$inferSelect,
-  systemPrompt: string,
-  userMessage: string,
-  projectId: string
-): Promise<string> {
+interface ToolPhaseParams {
+  mcpClient: McpClient;
+  allowedToolNames: string[];
+  agentConfig: typeof aiAgents.$inferSelect;
+  systemPrompt: string;
+  userMessage: string;
+  projectId: string;
+}
+
+async function runToolPhase({
+  mcpClient,
+  allowedToolNames,
+  agentConfig,
+  systemPrompt,
+  userMessage,
+  projectId,
+}: ToolPhaseParams): Promise<string> {
   const tools = await mcpClient.listTools();
   const availableTools = tools.filter((tool) => allowedToolNames.includes(tool.name));
   if (availableTools.length === 0) return '';
@@ -158,14 +167,14 @@ export async function executeStep(workflowStepId: string) {
   const mcpClient = allowedTools.length > 0 ? getMcpClient() : null;
   if (mcpClient) {
     try {
-      toolContextSummary = await runToolPhase(
+      toolContextSummary = await runToolPhase({
         mcpClient,
-        allowedTools,
+        allowedToolNames: allowedTools,
         agentConfig,
         systemPrompt,
-        baseUserMessage,
-        workflow.projectId
-      );
+        userMessage: baseUserMessage,
+        projectId: workflow.projectId,
+      });
     } catch (error) {
       logger.warn({ error, agentType: step.agentType }, 'MCP tool phase unavailable — continuing without tool context');
     }

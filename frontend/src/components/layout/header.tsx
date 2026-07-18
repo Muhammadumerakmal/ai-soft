@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { ThemeToggle } from './theme-toggle';
+
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -13,10 +15,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
+import { cn } from '@/lib/utils';
 
-import { ThemeToggle } from './theme-toggle';
 
 const NAV_LINKS = [
   { href: '/dashboard', label: 'Projects' },

@@ -31,6 +31,9 @@ const envSchema = z.object({
 const parsed = envSchema.safeParse(process.env);
 
 if (!parsed.success) {
+  // Env is validated at process bootstrap, before the Pino logger is constructed,
+  // so console is the only channel available here.
+  // eslint-disable-next-line no-console
   console.error('Environment validation failed:', parsed.error.flatten().fieldErrors);
   process.exit(1);
 }

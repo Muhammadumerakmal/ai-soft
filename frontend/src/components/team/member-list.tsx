@@ -1,7 +1,7 @@
 'use client';
 
-import { Trash2 } from 'lucide-react';
 import type { MemberResponse, TeamRole } from '@aisoftco/shared';
+import { Trash2 } from 'lucide-react';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';

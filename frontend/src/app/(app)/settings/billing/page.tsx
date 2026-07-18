@@ -1,7 +1,7 @@
 'use client';
 
-import { PageHeader } from '@/components/layout/page-header';
 import { PlanCard } from '@/components/billing/plan-card';
+import { PageHeader } from '@/components/layout/page-header';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSubscription } from '@/hooks/use-billing';
