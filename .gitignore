@@ -12,7 +12,10 @@ coverage/
 .turbo/
 
 # Claude Code local tooling state (agent worktrees, session data) — never committed
-.claude/
+.claude/*
+# …except versioned sub-agent definitions, which are shared project config
+!.claude/agents/
+!.claude/agents/**
 
 # AI-pipeline runtime output — generated at request time, not source
 /generated/
