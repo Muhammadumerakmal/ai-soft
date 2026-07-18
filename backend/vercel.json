@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm --prefix .. install",
-  "buildCommand": "npm --prefix .. run build --workspace=shared",
+  "installCommand": "cd .. && npm install",
+  "buildCommand": "cd .. && npm run build --workspace=shared",
   "functions": {
     "api/index.ts": {
       "maxDuration": 60
